@@ -21,7 +21,7 @@ properties([
                                         ]
                                     ]
                                 ],
-								[$class: 'CascadeChoiceParameter', 
+				[$class: 'CascadeChoiceParameter', 
                                     choiceType: 'PT_CHECKBOX', 
                                     name: 'Landscapes', 
                                     referencedParameters: 'Run_Tests_On_Landscapes', 
@@ -49,57 +49,8 @@ properties([
                                                     """
                                                 ]
                                         ]
-                                ],
-                               [$class: 'ChoiceParameter', 
-                                    choiceType: 'PT_SINGLE_SELECT', 
-                                    filterLength: 1, 
-                                    filterable: false, 
-                                    name: 'Tests', 
-                                    script: [
-                                        $class: 'GroovyScript', 
-                                        fallbackScript: [
-                                            classpath: [], 
-                                            sandbox: false, 
-                                            script: 
-                                                "return['Could not get The environemnts']"
-                                        ], 
-                                        script: [
-                                            classpath: [], 
-                                            sandbox: false, 
-                                            script: 
-                                                "return['All Tests','Spesific Test']"
-                                        ]
-                                    ]
-                                ],
-                                [$class: 'CascadeChoiceParameter', 
-                                    choiceType: 'PT_CHECKBOX', 
-                                    name: 'Choose_Tests', 
-                                    referencedParameters: 'Tests', 
-                                    script: 
-									[$class: 'GroovyScript', 
-									fallbackScript: [
-									classpath: [], 
-									sandbox: false, 
-									script: "return['Could not get Tests']"
-                                    ],  
-                                        script: [
-                                            classpath: [], 
-                                            sandbox: false, 
-                                            script: """
-                                                    if (Tests.equals("All Tests")) 
-                                                    {
-                                                        return [ ${esmTestsStrSel} ] 
-                                                        
-                                                    }
-                                                    
-                                                    if(Tests.equals("Spesific Test"))
-                                                    {
-                                                        return[ ${esmTestsStr} ] 
-                                                    }
-                                                    """
-                                        ]
-                                    ]
                                 ]
+                                
                         ])
 	 ])
 
@@ -135,25 +86,3 @@ properties([
 //         }
 //     }
 
-
-def status = ''
-node {
-    dir("${env.BUILD_NUMBER}") {
-        stage("Saucelabs Tests") {
-            try {
-//                 checkout scm
-//                 karmaExecuteTests script: this,
-//                   dockerImage: 'buildkite/puppeteer:latest',
-//                   sidecarPullImage: false,
-//                   dockerWorkspace: '/home/piper',
-//                   installCommand: 'npm install',
-//                   runCommand: 'npm run test.saucelabs'
-
-                status = 'SUCCESS'
-            }catch (exc) {
-                status = 'FAILURE'
-                throw error
-            }
-        }
-    }
-}
