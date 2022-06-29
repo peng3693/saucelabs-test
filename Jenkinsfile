@@ -38,13 +38,13 @@ properties([
                                             script: """
 					    if (Run_Tests_On_Landscapes.equals("All Landscape")) 
                                                     {
-                                                        "return['All 111','Spesific 1111']"
+                                                        return['All 111','Spesific 1111']
                                                         
                                                     }
                                                     
 					    if(Run_Tests_On_Landscapes.equals("Spesific Lanscape"))
                                                     {
-                                                        "return['Spesific 111','Spesific 111']"
+                                                        return['Spesific 111','Spesific 111']
                                                     }
                                                     """.stripIndent()
                                                 ]
