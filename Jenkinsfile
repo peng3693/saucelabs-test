@@ -101,6 +101,7 @@ properties([
                                     ]
                                 ]
                         ])
+	 ])
 
 //     properties([
 //         buildDiscarder(logRotator(artifactDaysToKeepStr: '5', artifactNumToKeepStr: '10', daysToKeepStr: '5', numToKeepStr: '10')),
