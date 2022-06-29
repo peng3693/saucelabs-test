@@ -1,7 +1,7 @@
 properties([
                     	parameters([
 							[$class: 'ChoiceParameter', 
-                                    choiceType: 'PT_SINGLE_SELECT', 
+                                    choiceType: 'PT_RADIO', 
                                     filterLength: 1, 
                                     filterable: false, 
                                     name: 'Run_Tests_On_Landscapes', 
@@ -44,7 +44,7 @@ properties([
                                                     
 					    if(Run_Tests_On_Landscapes.equals("Spesific Lanscape"))
                                                     {
-                                                        return['Spesific 111','Spesific 111']
+                                                        return['All 222','Spesific 222']
                                                     }
                                                     """.stripIndent()
                                                 ]
