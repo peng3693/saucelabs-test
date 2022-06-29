@@ -22,7 +22,7 @@ properties([
                                     ]
                                 ],
 				[$class: 'CascadeChoiceParameter', 
-                                    choiceType: 'PT_CHECKBOX', 
+                                    choiceType: 'PT_SINGLE_SELECT', 
                                     name: 'Landscapes', 
                                     referencedParameters: 'Run_Tests_On_Landscapes', 
                                     script: 
