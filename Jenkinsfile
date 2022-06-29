@@ -38,13 +38,13 @@ properties([
                                             script: """
                                                     if (Run_Tests_On_Landscapes.equals("All Landscape")) 
                                                     {
-                                                        return [ ${landStrSel} ] 
+                                                        "return['All 111','Spesific 1111']"
                                                         
                                                     }
                                                     
                                                     if(Run_Tests_On_Landscapes.equals("Spesific Lanscape"))
                                                     {
-                                                        return[ ${landStr} ] 
+                                                        "return['Spesific 111','Spesific 111']"
                                                     }
                                                     """
                                                 ]
