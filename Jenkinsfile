@@ -50,24 +50,136 @@ properties([
                                                 ]
                                         ]
                                 ],
-				    [$class: 'DynamicReferenceParameter',
-				      choiceType: 'ET_ORDERED_LIST', description: 'Select the  AMI based on the following information',
-				      name: 'Image Information',referencedParameters: 'Run_Tests_On_Landscapes',
-				      script:
-					  [$class: 'GroovyScript',
-					  script: 'return["Could not get AMi Information"]',
-					  script: [
-					      script: '''
-						      if (Env.equals("All Landscape")){
-							  return["ami-sd2345sd:  AMI with Java", "ami-asdf245sdf: AMI with Python", "ami-asdf3245sd: AMI with Groovy"]
-						      }
-						      else if(Env.equals("Spesific Lanscape")){
-							  return["ami-sd34sdf:  AMI with Java", "ami-sdf345sdc: AMI with Python", "ami-sdf34sdf: AMI with Groovy"]
-						      }
-						      '''.stripIndent()
-						  ]
-					  ]
-				  ]
+// 				    [$class: 'DynamicReferenceParameter',
+// 				      choiceType: 'ET_ORDERED_LIST', description: 'Select the  AMI based on the following information',
+// 				      name: 'Image Information',referencedParameters: 'Run_Tests_On_Landscapes',
+// 				      script:
+// 					  [$class: 'GroovyScript',
+// 					  script: 'return["Could not get AMi Information"]',
+// 					  script: [
+// 					      script: '''
+// 						      if (Env.equals("All Landscape")){
+// 							  return["ami-sd2345sd:  AMI with Java", "ami-asdf245sdf: AMI with Python", "ami-asdf3245sd: AMI with Groovy"]
+// 						      }
+// 						      else if(Env.equals("Spesific Lanscape")){
+// 							  return["ami-sd34sdf:  AMI with Java", "ami-sdf345sdc: AMI with Python", "ami-sdf34sdf: AMI with Groovy"]
+// 						      }
+// 						      '''.stripIndent()
+// 						  ]
+// 					  ]
+// 				  ]
+				[
+          $class: 'DynamicReferenceParameter',
+          choiceType: 'ET_FORMATTED_HTML',
+          name: '',
+          description: '',
+          randomName: 'choice-parameter-56313144223333',
+          referencedParameters: '',
+          script: [
+              $class: 'GroovyScript',
+              fallbackScript: [
+                  classpath: [],
+                  sandbox: false, script:
+                    """
+                    html =
+                        '''
+                            <!DOCTYPE html>
+                            <html>
+                            <body>
+                            <blockquote>
+                              loadCss in fallback script
+                            </blockquote>
+                            </body>
+                            </html>
+                         '''
+                         return html
+                    """
+              ],
+              script: [
+                  classpath: [],
+                  sandbox: false,
+                  script:
+                  """
+                        html =
+                        '''
+                        <!DOCTYPE html>
+                            <html>
+                            <head>
+                            <style>
+                            body {
+                              background-color: WhiteSmoke;
+                            }
+                            h2 {
+                              font-family:verdana;
+                              font-size: 16px;
+                              text-align: center;
+                            }
+                            h3 {
+                              font-family:verdana;
+                              font-size: 16px;
+                              text-align: left;
+                              color: red;
+                            }
+                            p {
+                              font-family:verdana;
+                              font-size: 12px;
+                            }
+                            #para1 {
+                              font-family:verdana;
+                              font-size: 15px;
+                              text-align: center;
+                              color: red;
+                            }
+                            input[type=text]:focus {
+                              border: 3px solid #555;
+                            }
+                            input[type=text] {
+                              font-family:verdana;
+                              font-size: 12px;
+                            }
+                            label, td, select {
+                              font-family:verdana;
+                              font-size: 12px;
+                            }
+                            small {
+                              padding-left:14em;
+                              font-family:verdana;
+                              font-size: 11px;
+                            }
+                            .tooltip {
+                              position: relative;
+                              display: inline-block;
+                              border-bottom: 2px dotted black;
+                            }
+                            .tooltip .tooltiptext {
+                              visibility: hidden;
+                              width: 400px;
+                              background-color: black;
+                              color: #fff;
+                              text-align: center;
+                              border-radius: 6px;
+                              padding: 5px 0;
+                              /* Position the tooltip */
+                              position: absolute;
+                              z-index: 1;
+                            }
+                            .tooltip:hover .tooltiptext {
+                              visibility: visible;
+                            }
+                            </style>
+                            </head>
+                            <body>
+                            <blockquote>
+                              New UI enabled
+                            </blockquote>
+                            </body>
+                            </html>
+                        '''
+                        return html
+              """
+              ]
+          ]
+      ]
                                 
                         ])
 	 ])
