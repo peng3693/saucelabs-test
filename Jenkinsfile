@@ -5,6 +5,7 @@ properties([
                                     filterLength: 1, 
                                     filterable: false, 
                                     name: 'Run_Tests_On_Landscapes', 
+				    description: 'Run Tests On Landscapes',
                                     script: [
                                         $class: 'GroovyScript', 
                                         fallbackScript: [
@@ -21,9 +22,11 @@ properties([
                                         ]
                                     ]
                                 ],
+				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI (Required)', trim: true),
 				[$class: 'CascadeChoiceParameter', 
                                     choiceType: 'PT_SINGLE_SELECT', 
                                     name: 'Landscapes', 
+				    description: 'Landscapes',
                                     referencedParameters: 'Run_Tests_On_Landscapes', 
                                     script: 
                                         [$class: 'GroovyScript', 
@@ -72,7 +75,7 @@ properties([
           $class: 'DynamicReferenceParameter',
           choiceType: 'ET_FORMATTED_HTML',
           name: 'Dynamic_Test',
-          description: '',
+          description: 'Dynamic Test',
           randomName: 'choice-parameter-56313144223333',
           referencedParameters: '',
           script: [
