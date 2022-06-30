@@ -71,7 +71,7 @@ properties([
 				[
           $class: 'DynamicReferenceParameter',
           choiceType: 'ET_FORMATTED_HTML',
-          name: '',
+          name: 'Dynamic_Test',
           description: '',
           randomName: 'choice-parameter-56313144223333',
           referencedParameters: '',
