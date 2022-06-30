@@ -101,85 +101,18 @@ properties([
               script: [
                   classpath: [],
                   sandbox: false,
-                  script:
-                  """
-                        html =
-                        '''
+                  script:'''
+                        def html = 
+                        """
                         <!DOCTYPE html>
-                            <html>
-                            <head>
-                            <style>
-                            body {
-                              background-color: WhiteSmoke;
-                            }
-                            h2 {
-                              font-family:verdana;
-                              font-size: 16px;
-                              text-align: center;
-                            }
-                            h3 {
-                              font-family:verdana;
-                              font-size: 16px;
-                              text-align: left;
-                              color: red;
-                            }
-                            p {
-                              font-family:verdana;
-                              font-size: 12px;
-                            }
-                            #para1 {
-                              font-family:verdana;
-                              font-size: 15px;
-                              text-align: center;
-                              color: red;
-                            }
-                            input[type=text]:focus {
-                              border: 3px solid #555;
-                            }
-                            input[type=text] {
-                              font-family:verdana;
-                              font-size: 12px;
-                            }
-                            label, td, select {
-                              font-family:verdana;
-                              font-size: 12px;
-                            }
-                            small {
-                              padding-left:14em;
-                              font-family:verdana;
-                              font-size: 11px;
-                            }
-                            .tooltip {
-                              position: relative;
-                              display: inline-block;
-                              border-bottom: 2px dotted black;
-                            }
-                            .tooltip .tooltiptext {
-                              visibility: hidden;
-                              width: 400px;
-                              background-color: black;
-                              color: #fff;
-                              text-align: center;
-                              border-radius: 6px;
-                              padding: 5px 0;
-                              /* Position the tooltip */
-                              position: absolute;
-                              z-index: 1;
-                            }
-                            .tooltip:hover .tooltiptext {
-                              visibility: visible;
-                            }
-                            </style>
-                            </head>
-                            <body>
-                            <blockquote>
-                              New UI enabled
-                            </blockquote>
-                            </body>
-                            </html>
+                        <html>
+                        <body>
+                        <input type="text"  class="jenkins-input   " id="query" name="value" value="111" >
+                        </body>
+                        </html>
+                        """
+                    return html
                         '''
-                        return html
-              """
               ]
           ]
       ]
