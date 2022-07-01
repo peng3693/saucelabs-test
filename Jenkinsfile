@@ -44,6 +44,31 @@ properties([
 // 				  ]
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
+                                    description: 'Enter credentials.url in the xsuaa instance "patient-accounting-uaa"',
+                                    name: 'Authorization_Url', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['This is the Validation Environment input field']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                if (Test_Environment.contains('Validation Environment')){
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="https://sap-health-validation-paprerel.authentication.eu10.hana.ondemand.com">"""
+
+                                                }
+                                                '''
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ] ,
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
                                     description: 'Enter credentials.clientsecret in the xsuaa instance "patient-accounting-uaa"',
                                     name: 'Client_ID', 
                                     referencedParameters: 'Test_Environment', 
@@ -59,7 +84,7 @@ properties([
                                                 sandbox: false, 
                                                 script: '''
                                                 if (Test_Environment.contains('Validation Environment')){
-                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="11111">"""
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="sb-patient-accounting-prerelease!b73122">"""
 
                                                 }
                                                 '''
@@ -84,7 +109,7 @@ properties([
                                                 sandbox: false, 
                                                 script: '''
                                                 if (Test_Environment.contains('Validation Environment')){
-                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="2222">"""
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="AzI0Qb9D4b92qb3uKW2tZpLWoRM=">"""
                                                 }
                                                 '''
                                             ] 
