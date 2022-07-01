@@ -1,6 +1,6 @@
 properties([
                     	parameters([
-			[$class: 'ChoiceParameter', 
+				[$class: 'ChoiceParameter', 
                                     choiceType: 'PT_RADIO', 
                                     filterLength: 1, 
                                     filterable: false, 
@@ -23,8 +23,8 @@ properties([
                                     ]
                                 ],
 				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI', trim: true),
-// 				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),   
-				[$class: 'DynamicReferenceParameter',
+ 				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),   
+//				[$class: 'DynamicReferenceParameter',
 // 				      choiceType: 'ET_ORDERED_LIST', description: 'Select the  AMI based on the following information',
 // 				      name: 'Image Information',referencedParameters: 'Run_Tests_On_Landscapes',
 // 				      script:
