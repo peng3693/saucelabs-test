@@ -79,30 +79,9 @@ properties([
           randomName: 'choice-parameter-56313144223333',
           referencedParameters: '',
           script: [
-              $class: 'GroovyScript',
-              fallbackScript: [
-                  classpath: [],
-                  sandbox: false, script:
-                    """
-                    html =
-                        '''
-                            <!DOCTYPE html>
-                            <html>
-                            <body>
-                            <blockquote>
-                              loadCss in fallback script
-                            </blockquote>
-                            </body>
-                            </html>
-                         '''
-                         return html
-                    """
-              ],
-              script: [
-                  $class: 'ScriptlerScript',
+              $class: 'ScriptlerScript',
                   parameters: [[$class: 'org.biouno.unochoice.model.ScriptlerScriptParameter', name: 'aaa', value: '$value']],
                   scriptlerScriptId: 'script.groovy'
-              ]
           ]
       ]
                                 
