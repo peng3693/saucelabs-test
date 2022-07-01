@@ -34,7 +34,7 @@ properties([
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
                                     description: 'Enter credentials.url in the xsuaa instance "patient-accounting-uaa"',
-                                    name: 'Authorization_Url', 
+                                    name: 'xxxxx', 
                                     referencedParameters: 'Test_Environment', 
                                     script: 
                                         [$class: 'GroovyScript', 
@@ -77,12 +77,6 @@ properties([
                                                 <script>
                                                		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=false;
                                                 </script>
-						
-						 def input =  
-                                                     """
-                                                     <input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913">
-                                                     """
-					       return input
                                                 '''
                                             ] 
                                     ],
