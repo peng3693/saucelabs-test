@@ -48,8 +48,7 @@ properties([
                                                 sandbox: false, 
                                                 script: '''
 						if (Test_Environment.contains('Validation Environment')){
-						return
-						"""
+						return """
 						   <script>
 						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
@@ -61,8 +60,7 @@ properties([
 						"""
 						} 
 						else if (Test_Environment.contains('Production Environment')){
-						return
-						"""
+						return """
 						   <script>
 					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
@@ -74,8 +72,7 @@ properties([
 					   	"""
 						}
 						else {
-						return
-						"""
+						return """
 						   <script>
 					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
