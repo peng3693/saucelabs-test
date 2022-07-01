@@ -46,37 +46,46 @@ properties([
                                         script: [
                                                 classpath: [], 
                                                 sandbox: false, 
-                                                script: return '''
+                                                script: '''
 						if (Test_Environment.contains('Validation Environment')){
+						return
+						"""
 						   <script>
-						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
-					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=false;
+						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=false;
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;
 						   </script>
+						"""
 						} 
 						else if (Test_Environment.contains('Production Environment')){
+						return
+						"""
 						   <script>
-					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
-						   </script>
-						}
-						else {
-						   <script>
-					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=false;
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=false;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;
 						   </script>
+					   	"""
 						}
-                                                <script>
-                                               		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=false;
-                                                </script>
+						else {
+						return
+						"""
+						   <script>
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;
+						   </script>
+					   	"""
+						}
                                                 '''
                                             ] 
                                     ],
