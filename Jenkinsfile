@@ -39,13 +39,13 @@ properties([
                                             classpath: [], 
                                             sandbox: false, 
                                             script: """
-					    if (Test_Environment.equals("All Landscape")) 
+					    if (Test_Environment.equals("Validation Environment")) 
                                                     {
                                                         return['All 111','Spesific 1111']
                                                         
                                                     }
                                                     
-					    if(Test_Environment.equals("Spesific Lanscape"))
+					    if(Test_Environment.equals("Production Environment"))
                                                     {
                                                         return['All 222','Spesific 222']
                                                     }
@@ -61,10 +61,10 @@ properties([
 // 					  script: 'return["Could not get AMi Information"]',
 // 					  script: [
 // 					      script: '''
-// 						      if (Env.equals("All Landscape")){
+// 						      if (Env.equals("Validation Environment")){
 // 							  return["ami-sd2345sd:  AMI with Java", "ami-asdf245sdf: AMI with Python", "ami-asdf3245sd: AMI with Groovy"]
 // 						      }
-// 						      else if(Env.equals("Spesific Lanscape")){
+// 						      else if(Env.equals("Production Environment")){
 // 							  return["ami-sd34sdf:  AMI with Java", "ami-sdf345sdc: AMI with Python", "ami-sdf34sdf: AMI with Groovy"]
 // 						      }
 // 						      '''.stripIndent()
@@ -73,7 +73,7 @@ properties([
 // 				  ]
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
-                                    description: 'enter job params',
+                                    description: 'Enter credentials.clientsecret in the xsuaa instance "patient-accounting-uaa"',
                                     name: 'Client_ID', 
                                     referencedParameters: 'Test_Environment', 
                                     script: 
@@ -81,7 +81,7 @@ properties([
                                         fallbackScript: [
                                                 classpath: [], 
                                                 sandbox: false, 
-                                                script: "return['']"
+                                                script: "return['This is the Validation Environment input field']"
                                                 ], 
                                         script: [
                                                 classpath: [], 
@@ -98,7 +98,7 @@ properties([
                                 ] ,
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
-                                    description: 'enter job params',
+                                    description: 'Enter credentials.clientsecret in the xsuaa instance "patient-accounting-uaa"',
                                     name: 'Client_Secret', 
                                     referencedParameters: 'Test_Environment', 
                                     script: 
@@ -106,7 +106,7 @@ properties([
                                         fallbackScript: [
                                                 classpath: [], 
                                                 sandbox: false, 
-                                                script: "return['']"
+                                                script: "return['This is the Validation Environment input field']"
                                                 ], 
                                         script: [
                                                 classpath: [], 
@@ -119,7 +119,56 @@ properties([
                                             ] 
                                     ],
                                 omitValueField: true
-                                ]               
+                                ],
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
+                                    description: ''Enter credentials.username in the feature-flags instance "patient-accounting-feature-flags-std"',
+                                    name: 'Username', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['This is the Production Environment input field']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                if (Test_Environment.contains('Production Environment')){
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="11111">"""
+
+                                                }
+                                                '''
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ] ,
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
+                                    description: 'Enter credentials.password in the feature-flags instance "patient-accounting-feature-flags-std"',
+                                    name: 'Password', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['This is the Production Environment input field']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                if (Test_Environment.contains('Production Environment')){
+                                                    return """222222"""
+                                                }
+                                                '''
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ]
                                 
                         ])
 	 ])
