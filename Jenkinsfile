@@ -1,6 +1,6 @@
 properties([
                     	parameters([
-							[$class: 'ChoiceParameter', 
+			[$class: 'ChoiceParameter', 
                                     choiceType: 'PT_RADIO', 
                                     filterLength: 1, 
                                     filterable: false, 
@@ -22,38 +22,9 @@ properties([
                                         ]
                                     ]
                                 ],
-				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI (Required)', trim: true),
-				[$class: 'CascadeChoiceParameter', 
-                                    choiceType: 'PT_SINGLE_SELECT', 
-                                    name: 'Landscapes', 
-				    description: 'Landscapes',
-                                    referencedParameters: 'Test_Environment', 
-                                    script: 
-                                        [$class: 'GroovyScript', 
-                                        fallbackScript: [
-                                        classpath: [], 
-                                        sandbox: false, 
-                                        script: "return['Could not get Tests']"
-                                        ],  
-                                        script: [
-                                            classpath: [], 
-                                            sandbox: false, 
-                                            script: """
-					    if (Test_Environment.equals("Validation Environment")) 
-                                                    {
-                                                        return['All 111','Spesific 1111']
-                                                        
-                                                    }
-                                                    
-					    if(Test_Environment.equals("Production Environment"))
-                                                    {
-                                                        return['All 222','Spesific 222']
-                                                    }
-                                                    """.stripIndent()
-                                                ]
-                                        ]
-                                ],
-// 				    [$class: 'DynamicReferenceParameter',
+				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI', trim: true),
+// 				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),   
+				[$class: 'DynamicReferenceParameter',
 // 				      choiceType: 'ET_ORDERED_LIST', description: 'Select the  AMI based on the following information',
 // 				      name: 'Image Information',referencedParameters: 'Run_Tests_On_Landscapes',
 // 				      script:
@@ -113,7 +84,7 @@ properties([
                                                 sandbox: false, 
                                                 script: '''
                                                 if (Test_Environment.contains('Validation Environment')){
-                                                    return """222222"""
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="2222">"""
                                                 }
                                                 '''
                                             ] 
@@ -162,7 +133,7 @@ properties([
                                                 sandbox: false, 
                                                 script: '''
                                                 if (Test_Environment.contains('Production Environment')){
-                                                    return """222222"""
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="2222">"""
                                                 }
                                                 '''
                                             ] 
