@@ -99,22 +99,9 @@ properties([
                     """
               ],
               script: [
-                  classpath: [],
-                  sandbox: false,
-                  script:'''
-                        def html = 
-                        """
-			<div class="jenkins-form-item tr "><div class="jenkins-form-label help-sibling">Tenant2_ID</div><div class="setting-main"><div name="parameter"><input name="name" type="hidden" value="Tenant2_ID">
-  			<input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913"></div></div><div class="validation-error-area tr"><div colspan="2"></div><div></div><div></div></div><div class="tr"><div colspan="2"></div><div class="setting-description">Enter the Tenant ID of the subaccount subscribed to the UI (Required)</div><div></div></div></div>                                         
-                        """
-		  $('.parameters').appendChild(html),
-		  
-		 def input =  
-		 """
-		 <input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913">
-		 """
-		 return input
-		'''
+                  $class: 'ScriptlerScript',
+                  parameters: [[$class: 'org.biouno.unochoice.model.ScriptlerScriptParameter', name: 'aaa', value: '$value']],
+                  scriptlerScriptId: 'script.groovy'
               ]
           ]
       ]
