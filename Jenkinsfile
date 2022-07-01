@@ -4,8 +4,8 @@ properties([
                                     choiceType: 'PT_RADIO', 
                                     filterLength: 1, 
                                     filterable: false, 
-                                    name: 'Run_Tests_On_Landscapes', 
-				    description: 'Run Tests On Landscapes',
+                                    name: 'Test_Environment', 
+				    description: 'Test Environment',
                                     script: [
                                         $class: 'GroovyScript', 
                                         fallbackScript: [
@@ -18,7 +18,7 @@ properties([
                                             classpath: [], 
                                             sandbox: false, 
                                             script: 
-                                                "return['All Landscape','Spesific Lanscape']"
+                                                "return['Validation Environment', 'Production Environment']"
                                         ]
                                     ]
                                 ],
@@ -27,7 +27,7 @@ properties([
                                     choiceType: 'PT_SINGLE_SELECT', 
                                     name: 'Landscapes', 
 				    description: 'Landscapes',
-                                    referencedParameters: 'Run_Tests_On_Landscapes', 
+                                    referencedParameters: 'Test_Environment', 
                                     script: 
                                         [$class: 'GroovyScript', 
                                         fallbackScript: [
@@ -39,13 +39,13 @@ properties([
                                             classpath: [], 
                                             sandbox: false, 
                                             script: """
-					    if (Run_Tests_On_Landscapes.equals("All Landscape")) 
+					    if (Test_Environment.equals("All Landscape")) 
                                                     {
                                                         return['All 111','Spesific 1111']
                                                         
                                                     }
                                                     
-					    if(Run_Tests_On_Landscapes.equals("Spesific Lanscape"))
+					    if(Test_Environment.equals("Spesific Lanscape"))
                                                     {
                                                         return['All 222','Spesific 222']
                                                     }
@@ -71,19 +71,55 @@ properties([
 // 						  ]
 // 					  ]
 // 				  ]
-				[
-          $class: 'DynamicReferenceParameter',
-          choiceType: 'ET_FORMATTED_HTML',
-          name: 'Dynamic_Test',
-          description: 'Dynamic Test',
-          randomName: 'choice-parameter-56313144223333',
-          referencedParameters: '',
-          script: [
-              $class: 'ScriptlerScript',
-                  parameters: [[$class: 'org.biouno.unochoice.model.ScriptlerScriptParameter', name: 'aaa', value: '$value']],
-                  scriptlerScriptId: 'script.groovy'
-          ]
-      ]
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
+                                    description: 'enter job params',
+                                    name: 'Client_ID', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                if (Test_Environment.contains('Validation Environment')){
+                                                    return """<input name="value" placeholder="" type="text" class="jenkins-input   " value="11111">"""
+
+                                                }
+                                                '''
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ] ,
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
+                                    description: 'enter job params',
+                                    name: 'Client_Secret', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                if (Test_Environment.contains('Validation Environment')){
+                                                    return """222222"""
+                                                }
+                                                '''
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ]               
                                 
                         ])
 	 ])
