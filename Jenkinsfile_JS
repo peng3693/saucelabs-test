@@ -22,8 +22,14 @@ properties([
                                         ]
                                     ]
                                 ],
-				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI', trim: true),
- 				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),   
+				string(defaultValue: 'https://sap-health-validation-ui-autotest-patientaccounting-prerelease.cfapps.eu10.hana.ondemand.com/cp.portal/site#Shell-home', name: 'UI_Url', description: 'Enter the UI link you want to test (Required)', trim: true),
+				    string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI (Required)', trim: true),
+				    string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std" (Required)', trim: true),
+				    string(defaultValue: 'https://sap-health-validation-paprerel.authentication.eu10.hana.ondemand.com', name: 'Authorization_Url', description: 'Enter credentials.url in the xsuaa instance "patient-accounting-uaa" (Validation Environment Required)', trim: true),
+				    string(defaultValue: 'sb-patient-accounting-prerelease!b73122', name: 'Client_ID', description: 'Enter credentials.clientid in the xsuaa instance "patient-accounting-uaa" (Validation Environment Required)', trim: true),
+				    string(defaultValue: 'AzI0Qb9D4b92qb3uKW2tZpLWoRM=', name: 'Client_Secret', description: 'Enter credentials.clientsecret in the xsuaa instance "patient-accounting-uaa" (Validation Environment Required)', trim: true),
+				    string(defaultValue: 'sbss_xtxduclg6of2kmyl+p2u6qvbu6yfx2bquudyxu9pptyepzllt2fnejlqvvxa8+fgo+k=', name: 'Username', description: 'Enter credentials.username in the feature-flags instance "patient-accounting-feature-flags-std" (Production Environment Required)', trim: true),
+				    string(defaultValue: 'aa_rPKNzxw1VxZCNYbRSOnDL6Wt17Y=', name: 'Password', description: 'Enter credentials.password in the feature-flags instance "patient-accounting-feature-flags-std" (Production Environment Required)', trim: true),
 
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
@@ -35,19 +41,41 @@ properties([
                                         fallbackScript: [
                                                 classpath: [], 
                                                 sandbox: false, 
-                                                script: "return['This is the Validation Environment input field']"
+                                                script: "return 'This is the Validation Environment input field'"
                                                 ], 
                                         script: [
                                                 classpath: [], 
                                                 sandbox: false, 
                                                 script: '''
+						if (Test_Environment == 'Validation Environment') {
+						   <script>
+						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=false;
+						   </script>
+						} 
+						else if (Test_Environment == 'Production Environment') {
+						   <script>
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
+						   </script>
+						}
+						else (Test_Environment == 'Production Environment') {
+						   <script>
+					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=false;
+							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=false;
+						   </script>
+						}
                                                 <script>
-                                               var html = 
-                        
-                                                '<div class="jenkins-form-item tr "><div class="jenkins-form-label help-sibling">Tenant2_ID</div><div class="setting-main"><div name="parameter"><input name="name" type="hidden" value="Tenant2_ID">
-                                                  <input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913"></div></div><div class="validation-error-area tr"><div colspan="2"></div><div></div><div></div></div><div class="tr"><div colspan="2"></div><div class="setting-description">Enter the Tenant ID of the subaccount subscribed to the UI (Required)</div><div></div></div></div>';                                      
-
-                                                $('.parameters').appendChild(html);
+                                               		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=false;
                                                 </script>
 						
 						 def input =  
