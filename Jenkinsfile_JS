@@ -1,1 +1,68 @@
+properties([
+                    	parameters([
+				[$class: 'ChoiceParameter', 
+                                    choiceType: 'PT_RADIO', 
+                                    filterLength: 1, 
+                                    filterable: false, 
+                                    name: 'Test_Environment', 
+				    description: 'Test Environment',
+                                    script: [
+                                        $class: 'GroovyScript', 
+                                        fallbackScript: [
+                                            classpath: [], 
+                                            sandbox: false, 
+                                            script: 
+                                                "return['Could not get The environemnts']"
+                                        ], 
+                                        script: [
+                                            classpath: [], 
+                                            sandbox: false, 
+                                            script: 
+                                                "return['Validation Environment', 'Production Environment']"
+                                        ]
+                                    ]
+                                ],
+				string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI', trim: true),
+ 				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),   
+
+				[$class: 'DynamicReferenceParameter', 
+                                    choiceType: 'ET_FORMATTED_HTML', 
+                                    description: 'Enter credentials.url in the xsuaa instance "patient-accounting-uaa"',
+                                    name: 'Authorization_Url', 
+                                    referencedParameters: 'Test_Environment', 
+                                    script: 
+                                        [$class: 'GroovyScript', 
+                                        fallbackScript: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: "return['This is the Validation Environment input field']"
+                                                ], 
+                                        script: [
+                                                classpath: [], 
+                                                sandbox: false, 
+                                                script: '''
+                                                <script>
+                                               def html = 
+                        
+                                                '<div class="jenkins-form-item tr "><div class="jenkins-form-label help-sibling">Tenant2_ID</div><div class="setting-main"><div name="parameter"><input name="name" type="hidden" value="Tenant2_ID">
+                                                  <input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913"></div></div><div class="validation-error-area tr"><div colspan="2"></div><div></div><div></div></div><div class="tr"><div colspan="2"></div><div class="setting-description">Enter the Tenant ID of the subaccount subscribed to the UI (Required)</div><div></div></div></div>'                                         
+
+                                                $('.parameters').appendChild(html)
+		  
+                                                </script>
+                                                '''
+                                                		 def input =  
+                                                     """
+                                                     <input name="value" placeholder="" type="text" class="jenkins-input   " value="f252ba42-4753-4090-a10b-ac1b48849913">
+                                                     """
+                                                     return input
+                                            ] 
+                                    ],
+                                omitValueField: true
+                                ] 
+                                
+                        ])
+	 ])
+
+
 
