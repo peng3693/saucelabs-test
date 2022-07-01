@@ -122,7 +122,7 @@ properties([
                                 ],
 				[$class: 'DynamicReferenceParameter', 
                                     choiceType: 'ET_FORMATTED_HTML', 
-                                    description: ''Enter credentials.username in the feature-flags instance "patient-accounting-feature-flags-std"',
+                                    description: 'Enter credentials.username in the feature-flags instance "patient-accounting-feature-flags-std"',
                                     name: 'Username', 
                                     referencedParameters: 'Test_Environment', 
                                     script: 
