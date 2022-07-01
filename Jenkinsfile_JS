@@ -46,7 +46,7 @@ properties([
                                         script: [
                                                 classpath: [], 
                                                 sandbox: false, 
-                                                script: '''
+                                                script: return '''
 						if (Test_Environment.contains('Validation Environment')){
 						   <script>
 						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
