@@ -47,7 +47,7 @@ properties([
                                                 classpath: [], 
                                                 sandbox: false, 
                                                 script: '''
-						if (Test_Environment == 'Validation Environment') {
+						if (Test_Environment.contains('Validation Environment')){
 						   <script>
 						   	document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
@@ -56,7 +56,7 @@ properties([
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=false;
 						   </script>
 						} 
-						else if (Test_Environment == 'Production Environment') {
+						else if (Test_Environment.contains('Production Environment')){
 						   <script>
 					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
@@ -65,7 +65,7 @@ properties([
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
 						   </script>
 						}
-						else (Test_Environment == 'Production Environment') {
+						else {
 						   <script>
 					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=false;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=false;
