@@ -90,16 +90,18 @@ properties([
 						     <html>			    
 						     <body>
 						     <script type="text/javascript">
-						     console.log("---------------Start-----------");
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
-							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;						  
-						  console.log("---------------End-----------");
+						     function aaChange() {
+							     console.log("---------------Start-----------");
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
+								document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;						  
+							  console.log("---------------End-----------");
+						   }
 						   </script>
-						   <input type="text" id="userId" name="value" value="222">
+						   <input type="text" id="userId" name="value" onchange="aaChange()" value="222">
 						     </body>
 						     </html>
 						    """
