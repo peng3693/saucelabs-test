@@ -25,7 +25,7 @@ properties([
 //                 ]
 //             ]
 //         ],
-        extendedChoice(defaultValue: 'Validation Environment', description: 'Test Environment', multiSelectDelimiter: ',', name: 'Test_Environment', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_RADIO', value: 'Validation Environment,Production Environment', visibleItemCount: 2),
+        extendedChoice(defaultValue: 'Validation Environment', description: '', multiSelectDelimiter: ',', name: 'Test_Environment', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_RADIO', value: 'Validation Environment,Production Environment', visibleItemCount: 2),
 		string(defaultValue: 'https://sap-health-validation-ui-autotest-patientaccounting-prerelease.cfapps.eu10.hana.ondemand.com/cp.portal/site#Shell-home', name: 'UI_Url', description: 'Enter the UI link you want to test (Required)', trim: true),	
 	    string(defaultValue: 'f252ba42-4753-4090-a10b-ac1b48849913', name: 'Tenant_ID', description: 'Enter the Tenant ID of the subaccount subscribed to the UI', trim: true),
  				string(defaultValue: 'https://feature-flag-svc-pacc-prerelease.cfapps.eu10.hana.ondemand.com', name: 'Feature_Flag_Url', description: 'If Test_Environment is Validation Environment, Enter the link of the Health Feature Flag Service; If Test_Environment is Production Environment, Enter credentials.uri in the feature-flags instance "patient-accounting-feature-flags-std"', trim: true),
