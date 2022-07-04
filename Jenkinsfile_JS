@@ -90,14 +90,16 @@ properties([
 						     <html>			    
 						     <body>
 						     <script type="text/javascript">
+						     function validateUserId() {
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[7].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[8].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[9].hidden=true;						  
+						   }
 						   </script>
-						     <input name="value" placeholder="" type="text" class="jenkins-input   " value="222">
+						     <input name="value" oninput="validateUserId()" placeholder="" type="text" class="jenkins-input   " value="222">
 						     </body>
 						     </html>
 						    """
