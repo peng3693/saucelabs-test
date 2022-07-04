@@ -84,9 +84,9 @@ properties([
 					   	"""
 						}
 						return """
-						<input name="value" placeholder="" type="text" class="jenkins-input   " value="getValue()">
+						<input name="value" placeholder="" type="text" class="jenkins-input   " value="222">
 						<script>
-						function getValue(){
+						function click(){
 					       		document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[4].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[5].hidden=true;
 							document.getElementsByName("parameters")[0].getElementsByClassName("jenkins-form-item tr")[6].hidden=true;
