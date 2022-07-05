@@ -40,7 +40,7 @@ properties([
                 fallbackScript: [
                         classpath: [],
                         sandbox: false,
-                        script: "return['This is the Validation Environment input field']"
+                        script: "return['']"
                         ],
                 script: [
                         classpath: [],
@@ -64,7 +64,7 @@ properties([
                 fallbackScript: [
                         classpath: [],
                         sandbox: false,
-                        script: "return['This is the Validation Environment input field']"
+                        script: "return['']"
                         ],
                 script: [
                         classpath: [],
@@ -88,7 +88,7 @@ properties([
                 fallbackScript: [
                         classpath: [],
                         sandbox: false,
-                        script: "return['This is the Validation Environment input field']"
+                        script: "return['']"
                         ],
                 script: [
                         classpath: [],
@@ -112,7 +112,7 @@ properties([
                 fallbackScript: [
                         classpath: [],
                         sandbox: false,
-                        script: "return['This is the Production Environment input field']"
+                        script: "return['']"
                         ],
                 script: [
                         classpath: [],
@@ -136,7 +136,7 @@ properties([
                 fallbackScript: [
                         classpath: [],
                         sandbox: false,
-                        script: "return['This is the Production Environment input field']"
+                        script: "return['']"
                         ],
                 script: [
                         classpath: [],
