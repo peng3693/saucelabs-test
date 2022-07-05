@@ -154,6 +154,9 @@ properties([
     ])
 ])
 
+echo "Authorization_Url : ${params.Authorization_Url}"
+echo "Client_ID : ${params.Client_ID}"
+
     if ( Test_Environment == 'Validation Environment') {
         if (UI_Url == '' || Tenant_ID == '' || Feature_Flag_Url == '' || Authorization_Url == '' || Client_ID == '' ||  Client_Secret == '') {
            error("In the Validation Environment, UI_Url, Tenant_ID, Feature_Flag_Url, Authorization_Url, Client_ID and Client_Secret are mandatory fields!")
